@@ -46,6 +46,30 @@ mcp-shield wrap -- npx -y @modelcontextprotocol/server-filesystem /Users/user/De
 {"jsonrpc":"2.0","error":{"code":-32000,"message":"Blocked by mcp-shield security policy"},"id":1}
 ```
 
+### Integrating with Claude Desktop
+
+Add `mcp-shield` directly into your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "mcp-shield",
+      "args": [
+        "wrap",
+        "--",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/username/Desktop"
+      ]
+    }
+  }
+}
+```
+
+`mcp-shield` will quietly monitor all tool calls and block destructive actions or credential leaks without breaking Claude's JSON-RPC pipe.
+
 ## Configuration (`mcp-shield.toml`)
 
 Place an optional `mcp-shield.toml` in the working directory:
